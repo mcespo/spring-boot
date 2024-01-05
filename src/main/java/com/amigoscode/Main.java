@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @SpringBootApplication
 @RestController
 public class Main {
@@ -14,20 +16,31 @@ public class Main {
 
     @GetMapping("/")
     public GreetResponse greet() {
-        return new GreetResponse("hello child!");
+        return new GreetResponse("hello child!", List.of("PHP", "HTML", "CSS", "Javascript"), new Person("Marvin", 29, 3000_0));
     }
 
-//    record GreetResponse(String greet){}
+    record Person(
+            String name,
+            int age,
+            double savings
+
+    ){}
+
+    record GreetResponse(
+            String greet,
+            List<String> favProgrammingLanguages,
+            Person person
+    ){}
 
     // manually create greetresponse
-    class GreetResponse {
-        private final String greet;
-        GreetResponse(String greet) {
-            this.greet = greet;
-        }
-
-        public String getGreet() {
-            return greet;
-        }
-    }
+//    class GreetResponse {
+//        private final String greet;
+//        GreetResponse(String greet) {
+//            this.greet = greet;
+//        }
+//
+//        public String getGreet() {
+//            return greet;
+//        }
+//    }
 }
