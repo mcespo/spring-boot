@@ -17,5 +17,17 @@ public class Main {
         return new GreetResponse("hello child!");
     }
 
-    record GreetResponse(String greet){}
+//    record GreetResponse(String greet){}
+
+    // manually create greetresponse
+    class GreetResponse {
+        private final String greet;
+        GreetResponse(String greet) {
+            this.greet = greet;
+        }
+
+        public String getGreet() {
+            return greet;
+        }
+    }
 }
